@@ -3,7 +3,7 @@ import './App.css';
 
 import CategoriaList from './components/categoriaList/categoriaList'
 import CategoriaForm from './components/categoriaInputForm/categoriaInputForm'
-import LibroList from './components/libroList/libroList'
+import LibroList from './components/libroList/libroList3'
 /*
 const url = 'http://localhost:3000';
 
