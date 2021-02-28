@@ -41,7 +41,7 @@ export async function deleteCategoria(categoria){
 
 }
 export async function addCategoria(categoria){
-  const response = await axios.post(url+'/categoria',categoria)
+  const response = await axios.post(url+'/categoria/',categoria)
   return response 
 }
 export async function deleteLibro(libro){

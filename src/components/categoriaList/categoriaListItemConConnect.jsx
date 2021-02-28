@@ -22,12 +22,12 @@ class categoriaListItem extends React.Component {
     
     render() {
         return (
-            <div>
-                <div className='itemListCategoria'>
+            
+                <li className='itemListCategoria' id={this.props.id}>
                     <button className="botonCategoriaItem" onClick={this.traerLibros}>{this.props.nombre}</button>
                     <button className="botonCategoriaItem2" onClick={this.delete} disabled={!this.props.borrable}>X</button>
-                </div>
-            </div>
+                </li>
+
         )
     }
 }
@@ -44,7 +44,10 @@ const mapAccionesAProps = (dispatch,props) => {
     return {
         onTraerLibros: () => {
             
-            dispatch({type:'libros/librosPorGenero',payload:props.id})},
+            dispatch({type:'libros/librosPorGenero',payload:props.id})
+            dispatch({type:'lista/setIdReq', payload:props.id})
+            dispatch({type:'lista/mostrarDeCategorias'})},
+            
         onDelete: () => {
             const get_res = async()=>{
                 try{const res=await deleteCategoria({id:props.id})

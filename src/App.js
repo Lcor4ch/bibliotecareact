@@ -1,9 +1,19 @@
 
 import './App.css';
 
-import CategoriaList from './components/categoriaList/categoriaList'
+import CategoriaList from './components/categoriaList/categoriaListClass'
 import CategoriaForm from './components/categoriaInputForm/categoriaInputForm'
-import LibroList from './components/libroList/libroList3'
+import LibroList from './components/libroList/libroList'
+
+import FormParaLibro from './components/libroInputForm/CategoriaFormParaLibro'
+import {store} from './store'
+
+import { fetchCategorias2 , fetchPersonas2 , fetchLibros2 } from './components/funcionesAxios'
+
+store.dispatch(fetchCategorias2)
+store.dispatch(fetchLibros2)
+store.dispatch(fetchPersonas2)
+
 /*
 const url = 'http://localhost:3000';
 
@@ -47,11 +57,12 @@ function App() {
       <h2>Todos</h2>
       <div className="bibliotecaApp">
       <div className="categoriaColumna"><CategoriaForm/><CategoriaList />
-        
-      </div>
-      <div><LibroList/></div>
-        
       
+      </div>
+      <div className="categoriaColumna">
+      <div><LibroList/></div>
+      <div><FormParaLibro/></div>  
+      </div>
       </div>
     </section>
   </main>

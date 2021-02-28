@@ -2,7 +2,7 @@ import axios from "axios"
 
 const url = 'http://localhost:3000';
 
-const initialState = [];
+const initialState = [{id:0,nombre:'nada',selected:true,borrable:false}];
   
  
   export default function categoriaReducer(state = initialState, action) {
@@ -14,7 +14,7 @@ const initialState = [];
           {
             id: action.payload.id,
             nombre: action.payload.nombre,
-            selected: true,
+            selected: false,
             borrable: false
           },
         ]
@@ -30,6 +30,9 @@ const initialState = [];
       }
       case 'categoria/categoriaHacerBorrable':{
         return state.map((categoria)=>{return categoria.borrable=(categoria.id===action.payload)})  
+      } 
+      case 'categoria/HacerBorrables':{
+        return state.map((categoria)=>{return categoria.borrable=true})  
       } 
       default:
         return state

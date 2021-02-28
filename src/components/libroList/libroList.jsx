@@ -1,26 +1,36 @@
 import React from 'react'
 import { connect} from 'react-redux'
 import LibroListItem from './libroListItem'
-import store from '../../store'
+import EmBot from './emergencyButton'
 
 class LibroList extends React.Component {
+  
   render(){
-        if (this.props.state.personas.length*this.props.state.libros.length*this.props.state.categorias.length>0){
-        const libros = store.getState().libros  
-        const libros2 = this.props.state.libros
+        const filas=[]
         const personas = this.props.state.personas
-        const categorias = this.props.state.categorias
-        libros.filter((libro)=>libro.selected===true)
-        console.log(libros)  
+        const libros =this.props.state.libros
+        libros.map((libro)=>{return libro.borrable=(personas.filter(persona=>libro.persona_id===persona.id).length===0)})
+        
+        console.log(100,this.props.state)
+        this.props.state.libros.forEach((libro)=>{
+          if(this.props.state.lista.idReq==null){
+            filas.push(<LibroListItem selected ={libro.selected} key={libro.id} id={libro.id} nombre={libro.nombre} borrable={libro.borrable} />)
+          }else{
+          if (libro.categoria_id===this.props.state.lista.idReq){
+            filas.push(<LibroListItem selected ={libro.selected} key={libro.id} id={libro.id} nombre={libro.nombre} borrable={libro.borrable} />)
+          }
+        }}
+        )
+        filas.push(<EmBot key='15478545'/>)  
     return (
-        <div className="ListaLibro">
+      
+          <ul className="ListaLibro">
           
-          {libros.map(libro => (
-            <LibroListItem key={libro.id} nombre={libro.nombre} borrable={libro.borrable}/>
-          ))}
+            {filas}
           
-        </div>
-      )}else{return null};
+          </ul>    
+      
+      );
 }
 }
 

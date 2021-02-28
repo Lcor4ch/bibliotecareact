@@ -1,9 +1,7 @@
 import axios from "axios"
 
 const url = 'http://localhost:3000';
-
-const initialState = [];
-  
+const initialState = [{id:0,nombre:'nada',persona_id:0,categoria_id:0,selected:true,borrable:false}];
 
   
   export default function libroReducer(state = initialState, action) {
@@ -17,7 +15,7 @@ const initialState = [];
       }
       case 'libros/librosLoaded': {
         // Replace the existing state entirely by returning the new value
-        action.payload.map((act)=>{return act.selected=false})
+        action.payload.map((act)=>{return act.selected=true})
         action.payload.map((act)=>{return act.borrable=false})
         return action.payload
       }

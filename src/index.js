@@ -6,19 +6,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 
-import store from './store'
 
-import { fetchCategorias2 , fetchPersonas2 , fetchLibros2 } from './components/funcionesAxios'
+import {store, persistor} from './store'
+import { PersistGate } from 'redux-persist/integration/react'
 
-store.dispatch(fetchPersonas2)
-store.dispatch(fetchLibros2)
-store.dispatch(fetchCategorias2)
 
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
     <App />
+    </PersistGate>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

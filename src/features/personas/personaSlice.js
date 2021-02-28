@@ -2,7 +2,7 @@ import axios from "axios"
 
 const url = 'http://localhost:3000';
 
-const initialState = [];
+const initialState = [{id:0,nombre:'nada',apellido:'nada',email:'nadie@nada.com',selected:true,borrable:false}];;
   
  
   export default function personaReducer(state = initialState, action) {

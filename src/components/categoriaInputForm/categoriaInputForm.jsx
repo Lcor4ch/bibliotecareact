@@ -8,6 +8,7 @@ class CategoriaForm extends React.Component {
         this.state = {nombre:''}
     }
     ponerCategoria(){
+      
         this.props.ponerCategoria(this.state);
     }
     
@@ -35,7 +36,7 @@ class CategoriaForm extends React.Component {
 const mapEstadoAProps = (state) => {
  
     return {
-        state: state
+        state: state.categorias
     }
 }
 
@@ -44,9 +45,9 @@ const mapAccionesAProps = (dispatch,props) => {
         /*ponerCategoria: () => {const response=addCategoria(this.props)
             dispatch({type:'categorias/categoriaAdded',payload:props.id})},*/
             ponerCategoria: (nombre) => {const get_res = async()=>{
-                console.log(props.nombre,10)
+                
                 try{const res=await addCategoria(nombre)
-                console.log(res)
+                
                 if (res.status===200){
                 dispatch({type:'categorias/categoriaAdded', payload:res.data})}}
                 catch(e){
