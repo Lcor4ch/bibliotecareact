@@ -8,7 +8,7 @@ class CategoriaList extends React.Component{
             return categoria.borrable=
             (this.props.state.libros.filter(libro=>libro.categoria_id===categoria.id).length===0)
         })
-        const filas=[<BotonTodos key="-1"/>]
+        const filas=[<BotonTodos id="-1" key="-1"/>]
         this.props.state.categorias.forEach((categoria)=>{
             filas.push(<CategoriaListItem nombre={categoria.nombre}
                  borrable={categoria.borrable} id={categoria.id} key={categoria.id}/>

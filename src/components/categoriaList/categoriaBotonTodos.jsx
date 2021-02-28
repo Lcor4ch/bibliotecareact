@@ -37,7 +37,7 @@ const mapAccionesAProps = (dispatch,props) => {
         onTraerTodos: () => {
             
             dispatch({type:'libros/mostrarTodos',payload:props.id})
-            dispatch({type:'lista/setIdReq', payload:null})
+            dispatch({type:'lista/setIdReq', payload:-1})
             dispatch({type:'lista/mostrarDeCategorias'})},
             
         

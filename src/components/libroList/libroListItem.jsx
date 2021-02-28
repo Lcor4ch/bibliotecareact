@@ -23,7 +23,7 @@ class LibroListItem extends React.Component {
     }
     
     render() {
-            if (this.props.selected){   
+            if (true){   
             return (
                            
                 <li className='itemListLibro'>

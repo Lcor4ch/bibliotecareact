@@ -40,7 +40,7 @@ class CategoriaFormParaLibro extends React.Component {
     render() {
         if(this.props.state){
         const opciones=[];
-        this.props.state.map((categoria=>opciones.push(<option key={categoria.id} id={categoria.id}>{categoria.nombre}</option>)))
+        this.props.state.map((categoria=>opciones.push(<option key={categoria.id} value={categoria.id}>{categoria.nombre}</option>)))
 
 
         return (
@@ -53,6 +53,7 @@ class CategoriaFormParaLibro extends React.Component {
             <input
             className="descripcion"
             type='text'
+            id='descripcion'
             onChange={this.myChangeHandler}
             placeholder="introduzca una descripcion"
           />

@@ -1,4 +1,4 @@
-const initialState = [{mostrarPersonas:false,idReq:null}];
+const initialState = [{mostrarPersonas:false,idReq:-1}];
 
   
   export default function listaReducer(state = initialState, action) {

@@ -13,7 +13,7 @@ class LibroList extends React.Component {
         
         console.log(100,this.props.state)
         this.props.state.libros.forEach((libro)=>{
-          if(this.props.state.lista.idReq==null){
+          if(this.props.state.lista.idReq===-1){
             filas.push(<LibroListItem selected ={libro.selected} key={libro.id} id={libro.id} nombre={libro.nombre} borrable={libro.borrable} />)
           }else{
           if (libro.categoria_id===this.props.state.lista.idReq){
