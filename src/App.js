@@ -1,11 +1,11 @@
 
 import './App.css';
 
-import CategoriaList from './components/categoriaList/categoriaListClass'
-import CategoriaForm from './components/categoriaInputForm/categoriaInputForm'
-import LibroList from './components/libroList/libroList'
+import CategoriaList from './components/categorias/categoriaList'
+import CategoriaForm from './components/categorias/categoriaForm'
+import LibroList from './components/libros/libroList'
 
-import FormParaLibro from './components/libroInputForm/CategoriaFormParaLibro'
+import LibroForm from './components/libros/libroForm'
 import {store} from './store'
 
 import { fetchCategorias2 , fetchPersonas2 , fetchLibros2 } from './components/funcionesAxios'
@@ -61,7 +61,7 @@ function App() {
       </div>
       <div className="categoriaColumna">
       <div><LibroList/></div>
-      <div><FormParaLibro/></div>  
+      <div><LibroForm/></div>  
       </div>
       </div>
     </section>
