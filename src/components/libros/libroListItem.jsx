@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { deleteLibro } from "../funcionesAxios";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 
 class LibroListItem extends React.Component {
   constructor(props) {
@@ -22,7 +24,19 @@ class LibroListItem extends React.Component {
 
   render() {
     return (
-      <li className="itemListLibro">
+      <Card style={{ width: "30rem" }}>
+          <Card.Body>
+            <Card.Title>{this.props.nombre}</Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">
+              Persona si está prestado
+            </Card.Subtitle>
+            <Card.Text>
+              Descripcion. Some quick example text to build on the card title and make up the bulk of the card's content.
+            </Card.Text>
+            <Button variant="primary">Go somewhere</Button>
+          </Card.Body>
+        </Card>
+      /*<li className="itemListLibro">
         {this.props.nombre}
       <div>
           <button
@@ -35,7 +49,7 @@ class LibroListItem extends React.Component {
           disabled={!this.props.borrable}
           id={this.props.id}> X </button>
           </div>
-      </li>
+      </li>*/
     );
   }
 }
