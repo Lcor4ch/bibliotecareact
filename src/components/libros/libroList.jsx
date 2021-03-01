@@ -51,7 +51,9 @@ class LibroList extends React.Component {
             id={libro.id}
             nombre={libro.nombre}
             descripcion={libro.descripcion}
-            borrable={libro.borrable}/>
+            borrable={libro.borrable}
+            categoria_id={libro.categoria_id}
+            persona_id={libro.persona_id}/>
         );
       }}
   }});

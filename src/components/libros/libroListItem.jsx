@@ -24,12 +24,19 @@ class LibroListItem extends React.Component {
   }
 
   render() {
+    const personas = this.props.state.personas
+    const persona = personas.find((persona)=>persona.id===this.props.persona_id)
+    const cartel ='En biblioteca'
+    const aMostrar = persona?persona.nombre:cartel
+    console.log(aMostrar,15452662,null==null)
+    console.log(this.props.persona_id)
     return (
       <Card style={{ width: "30rem" }}>
           <Card.Body>
             <Card.Title>{this.props.nombre}</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">
-              Persona si está prestado
+              
+              {aMostrar}
             </Card.Subtitle>
             <Card.Text>
               {this.props.descripcion}

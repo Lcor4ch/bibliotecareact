@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import PersonaListItem from "../personas/personaListItem";
-
+import PersonaListItem from "./personaListItem";
+import BotonBiblioteca from "./botonBiblioteca";
 class PersonaList extends React.Component {
   render() {
     this.props.state.personas.map((persona) => {
@@ -10,7 +10,7 @@ class PersonaList extends React.Component {
           (libro) => libro.persona_id === persona.id).length === 0);
     });
     
-    const filas = []
+    const filas = [<BotonBiblioteca/>]
      
     this.props.state.personas.forEach((persona) => {
       filas.push(

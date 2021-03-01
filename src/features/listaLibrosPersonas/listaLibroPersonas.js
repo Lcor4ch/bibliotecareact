@@ -17,6 +17,9 @@ const initialState = [{mostrarPersonas:false,idReq:-1}];
         mostrarPersonas:false
         }
       }
+      case 'lista/soloEnBiblioteca':{
+        return {...state,idReq: null}
+      }
       case 'lista/setIdReq':{
           return {...state,idReq : action.payload}
       }
