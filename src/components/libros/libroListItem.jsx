@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { deleteLibro } from "../funcionesAxios";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 
 class LibroListItem extends React.Component {
   constructor(props) {
@@ -22,18 +24,40 @@ class LibroListItem extends React.Component {
 
   render() {
     return (
-      <li className="itemListLibro">
-        {this.props.nombre}
-        <button
-          className="botonCategoriaItem2"
-          onClick={this.clickear}
-          id={this.props.id}> 0 </button>
-        <button
-          className="botonCategoriaItem2"
-          onClick={this.delete}
-          disabled={!this.props.borrable}
-          id={this.props.id}> X </button>
-      </li>
+      //<li className="itemListLibro">
+        <Card style={{ width: "30rem" }}>
+          <Card.Body>
+            <Card.Title>{this.props.nombre}</Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">
+              Persona si está prestado
+            </Card.Subtitle>
+            <Card.Text>
+              Descripcion. Some quick example text to build on the card title and make up the bulk of the card's content.
+            </Card.Text>
+            <Button variant="primary">Go somewhere</Button>
+          </Card.Body>
+        </Card>
+        /*{ <Card>
+          <Card.Body>{this.props.nombre}</Card.Body>
+          <div>
+            <button
+              className="botonCategoriaItem2"
+              onClick={this.clickear}
+              id={this.props.id}
+            >
+              0
+            </button>
+            <button
+              className="botonCategoriaItem2"
+              onClick={this.delete}
+              disabled={!this.props.borrable}
+              id={this.props.id}
+            >
+              X
+            </button>
+          </div>
+        </Card>
+      </li> }*/
     );
   }
 }

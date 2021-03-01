@@ -8,6 +8,7 @@ class LibroList extends React.Component {
     const filas = [];
     const personas = this.props.state.personas;
     const libros = this.props.state.libros;
+    
     libros.map((libro) => {
       return (libro.borrable =
         personas.filter((persona) => libro.persona_id === persona.id).length === 0);
