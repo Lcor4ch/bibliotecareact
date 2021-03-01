@@ -16,6 +16,7 @@ store.dispatch(fetchLibros2);
 store.dispatch(fetchPersonas2);
 
 function App() {
+
   return (
     <div className="App">
       <nav>
@@ -31,7 +32,7 @@ function App() {
               <CategoriaForm />
               <CategoriaList />
             </div>
-            <div className="categoriaColumna">
+            <div className="LibroColumna">
               <div>
                 <LibroList />
               </div>
@@ -50,5 +51,6 @@ function App() {
       </main>
     </div>
   );
+
 }
 export default App;

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import LibroListItem from "./libroListItem";
-import EmBot from "./emergencyButton";
+
 
 class LibroList extends React.Component {
   render() {
@@ -38,7 +38,7 @@ class LibroList extends React.Component {
         }
       }
     });
-    filas.push(<EmBot key="15478545" />);
+    
     return <ul className="ListaLibro">{filas}</ul>;
   }
 }
