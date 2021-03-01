@@ -1,7 +1,7 @@
 import React from 'react';
-import {addPersona} from '../funcionesAxios';
+import {putPersona} from '../funcionesAxios';
 import { connect } from "react-redux";
-class PersonaForm extends React.Component {
+class PersonaPutForm extends React.Component {
     constructor(props){
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);    
@@ -10,8 +10,10 @@ class PersonaForm extends React.Component {
     this.state = { 
         nombre: null,
         apellido: null,
-        email: null,
-        alias: null
+        email: this.props.email,
+        alias: null,
+        id:this.props.id,
+        borrable:this.props.borrable
     }
     }
     handleChange = (e) => {
@@ -23,9 +25,10 @@ class PersonaForm extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         console.log(this.props,15);
+        console.log(this.state,45)
         this.props.onClickear(this.state)
         e.target.reset();
-        this.setState({nombre:'',apellido:'',alias:'',email:''})
+        this.setState({nombre:'',apellido:'',alias:''})
     }
 
     render() { 
@@ -34,7 +37,6 @@ class PersonaForm extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <input type="text" id="nombre" placeholder="nombre" onChange={this.handleChange} />
                     <input type="text" id="apellido" placeholder="apellido" onChange={this.handleChange} />
-                    <input type="text" id="email" placeholder="email" onChange={this.handleChange} />
                     <input type="text" id="alias" placeholder="alias" onChange={this.handleChange} />
                     <p></p>
                     <button>Guardar</button>
@@ -54,20 +56,31 @@ const mapEstadoAProps = (state) => {
       /*ponerCategoria: () => {const response=addCategoria(this.props)
               dispatch({type:'categorias/categoriaAdded',payload:props.id})},*/
       onClickear: (props) => {
-        const post_persona = async()=>{
+        const put_persona = async()=>{
+            console.log(1000,props)
           try {
-            const res = await addPersona(props);
+            const res = await putPersona(props);
+            
             if (res.status === 200){
-              const payload = {id:res.data.id,nombre:res.data.nombre, apellido:res.data.apellido,alias:res.data.alias,email:res.data.email,borrable:true}
-              dispatch({ type: "personas/personaAdded", payload: payload });
+              const payload = {
+                 id:parseInt(res.data.id),
+                 nombre:res.data.nombre,
+                 apellido:res.data.apellido,
+                 alias:res.data.alias,
+                 email:res.data.email,
+                 borrable:props.borrable
+                 
+                }
+                
+                dispatch({ type: "personas/personaDeleted", payload: payload.id });
+                dispatch({ type: "personas/personaAdded", payload: payload});
               }
               }catch (e){
-                console.log(e,10)
-                
+                console.log(props)
   
             }
         }
-      post_persona()
+      put_persona()
       
       
       }
@@ -75,4 +88,4 @@ const mapEstadoAProps = (state) => {
   };
   
   
-  export default connect(mapEstadoAProps,mapAccionesAProps)(PersonaForm); 
+  export default connect(mapEstadoAProps,mapAccionesAProps)(PersonaPutForm);

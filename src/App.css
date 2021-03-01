@@ -20,6 +20,7 @@
   display:flex;
   flex-direction:row;
   justify-content: space-between;
+  align-items:stretch;
   background-color: black;
   width:35%;
 }
@@ -67,4 +68,10 @@
   justify-content: space-around;
   margin: 2px;
   padding: 1px;
+}
+.PersonaColumna{
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start ;
+  width:30%;
 }

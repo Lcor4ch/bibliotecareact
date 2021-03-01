@@ -9,10 +9,7 @@ const initialState = [{id:0,nombre:'nada',apellido:'nada',email:'nadie@nada.com'
     switch (action.type) {
       case 'personas/personaAdded': {
         // Can return just the new todos array - no extra object around it
-        return [
-          ...state,
-          action.payload,
-        ]
+        return [action.payload].concat(state)
       }
       case 'personas/personasLoaded': {
         // Replace the existing state entirely by returning the new value
@@ -21,8 +18,19 @@ const initialState = [{id:0,nombre:'nada',apellido:'nada',email:'nadie@nada.com'
         return action.payload
       }
       case 'personas/personaDeleted':{
+        
         return state.filter((persona) => persona.id !== action.payload)
       }
+      case 'personas/personaModificada':{
+        const ind = state.findIndex((persona)=>parseInt(persona.id)===parseInt(action.payload.id))
+        
+        return state.splice(ind,1,action.payload)
+        
+        
+        
+      }
+
+
       default:
         return state
     }

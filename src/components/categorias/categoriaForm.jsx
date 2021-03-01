@@ -30,7 +30,7 @@ class CategoriaForm extends React.Component {
             
           />
           <input
-            type='submit' 
+            type='submit' value='Guardar'
           />
           </form>
         );

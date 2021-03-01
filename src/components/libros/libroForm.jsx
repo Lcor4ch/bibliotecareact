@@ -1,5 +1,5 @@
 import React from "react";
-import { addCategoria, addLibro } from "../funcionesAxios";
+import { addLibro } from "../funcionesAxios";
 import { connect } from "react-redux";
 
 class LibroForm extends React.Component {
@@ -85,21 +85,7 @@ const mapAccionesAProps = (dispatch, props) => {
           }
       }
     post_libro()
-    },
-    ponerCategoria: (nombre) => {
-      const get_res = async () => {
-        try {
-          const res = await addCategoria(nombre);
-          console.log(res);
-          if (res.status === 200) {
-            dispatch({ type: "categorias/categoriaAdded", payload: res.data });
-          }
-        } catch (e) {
-          console.log(props.nombre);
-        }
-      };
-      get_res();
-    },
+    }
   };
 };
 

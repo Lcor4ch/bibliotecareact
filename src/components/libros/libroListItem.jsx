@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { deleteLibro } from "../funcionesAxios";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import DescripcionPopUpFrom from "./descripcionPopUpForm"
 
 class LibroListItem extends React.Component {
   constructor(props) {
@@ -31,12 +32,18 @@ class LibroListItem extends React.Component {
               Persona si está prestado
             </Card.Subtitle>
             <Card.Text>
-              Descripcion. Some quick example text to build on the card title and make up the bulk of the card's content.
+              {this.props.descripcion}
             </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
+            <DescripcionPopUpFrom nombre={this.props.nombre}
+                                  id={ this.props.id}
+                                  descripcion={this.props.descripcion}
+                                  categoria_id={this.props.categoria_id}
+                                  borrable={this.props.borrable}
+                                  persona_id={this.props.persona_id}/>
           </Card.Body>
         </Card>
-      /*<li className="itemListLibro">
+/*<Button variant="primary">Go somewhere</Button>*/
+/*<li className="itemListLibro">
         {this.props.nombre}
       <div>
           <button

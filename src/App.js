@@ -33,17 +33,17 @@ function App() {
               <CategoriaList />
             </div>
             <div className="LibroColumna">
+            <div>
+                <LibroForm />
+              </div>
               <div>
                 <LibroList />
               </div>
-              <div>
-                <LibroForm />
-              </div>
+              
             </div>
-            <div>
+            <div className='PersonaColumna'>
               <PersonaForm />
-            </div>
-            <div>
+
               <PersonaList />
             </div>
           </div>

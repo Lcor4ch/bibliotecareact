@@ -1,17 +1,14 @@
 import axios from "axios"
 
 const url = 'http://localhost:3000';
-const initialState = [{id:0,nombre:'nada',persona_id:0,categoria_id:0,selected:true,borrable:false}];
+const initialState = [{id:0,nombre:'nada',persona_id:0,categoria_id:0,descripcion:'',selected:true,borrable:false}];
 
   
   export default function libroReducer(state = initialState, action) {
     switch (action.type) {
       case 'libros/libroAdded': {
         // Can return just the new todos array - no extra object around it
-        return [
-          ...state,
-          action.payload,
-        ]
+        return [action.payload].concat(state)
       }
       case 'libros/librosLoaded': {
         // Replace the existing state entirely by returning the new value
@@ -23,6 +20,7 @@ const initialState = [{id:0,nombre:'nada',persona_id:0,categoria_id:0,selected:t
         state.map((libro)=> {return libro.selected=(libro.categoria_id===action.payload)})
         return state
       }
+      
       case 'libros/mostrarTodo':{
         return state.map((libro)=>libro.selected=true)
       }
