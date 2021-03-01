@@ -59,7 +59,7 @@ function App() {
       <div className="categoriaColumna"><CategoriaForm/><CategoriaList />
       
       </div>
-      <div className="categoriaColumna">
+      <div className="LibroColumna">
       <div><LibroList/></div>
       <div><LibroForm/></div>  
       </div>

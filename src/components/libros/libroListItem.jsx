@@ -24,7 +24,8 @@ class LibroListItem extends React.Component {
     return (
       <li className="itemListLibro">
         {this.props.nombre}
-        <button
+      <div>
+          <button
           className="botonCategoriaItem2"
           onClick={this.clickear}
           id={this.props.id}> 0 </button>
@@ -33,6 +34,7 @@ class LibroListItem extends React.Component {
           onClick={this.delete}
           disabled={!this.props.borrable}
           id={this.props.id}> X </button>
+          </div>
       </li>
     );
   }

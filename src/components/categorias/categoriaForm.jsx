@@ -5,11 +5,14 @@ class CategoriaForm extends React.Component {
     constructor(props){
         super(props);
         this.ponerCategoria= this.ponerCategoria.bind(this);
-        this.state = {nombre:''}
+        this.state = {nombre:'nada'}
     }
-    ponerCategoria(){
-      
+    
+    ponerCategoria=(event)=>{
+        event.preventDefault();
         this.props.ponerCategoria(this.state);
+        event.target.reset();
+        this.setState({nombre:''})
     }
     
     myChangeHandler = (event) => {
@@ -23,7 +26,8 @@ class CategoriaForm extends React.Component {
           <input
             type='text'
             onChange={this.myChangeHandler}
-            placeholder="introduzca una categoria"
+            placeholder={this.state.nombre}
+            
           />
           <input
             type='submit' 

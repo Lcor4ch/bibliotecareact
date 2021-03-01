@@ -40,6 +40,17 @@ export async function deleteCategoria(categoria){
         /*dispatch({ type: 'categorias/categoriaDeleted', payload: info })*/
 
 }
+export async function addLibro(libro){
+  console.log(154,libro)
+  const response = await axios.post(url+'/libro/',libro)
+  return response 
+}
+export async function addPersona(persona){
+  
+  const response = await axios.post(url+'/persona/',persona)
+  return response 
+}
+
 export async function addCategoria(categoria){
   const response = await axios.post(url+'/categoria/',categoria)
   return response 
