@@ -25,7 +25,7 @@ class LibroListItem extends React.Component {
     this.setState({
       [event.target.id]: null
   })
-    
+  
     this.props.onDevolver()   
 }
 
@@ -118,6 +118,7 @@ const mapAccionesAProps = (dispatch, props) => {
             const payload = props;
             payload.borrable=true;
             payload.persona_id=null;
+            console.log(15154,payload)
             dispatch({ type: "libros/libroDeleted", payload: props.id });
             dispatch({type:"libros/libroAdded",payload:payload})
           }

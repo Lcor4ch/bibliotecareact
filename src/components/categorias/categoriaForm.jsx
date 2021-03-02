@@ -46,8 +46,6 @@ const mapEstadoAProps = (state) => {
 
 const mapAccionesAProps = (dispatch,props) => {
     return {
-        /*ponerCategoria: () => {const response=addCategoria(this.props)
-            dispatch({type:'categorias/categoriaAdded',payload:props.id})},*/
             ponerCategoria: (nombre) => {const get_res = async()=>{
                 
                 try{const res=await addCategoria(nombre)

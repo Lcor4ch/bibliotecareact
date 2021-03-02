@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 class PrestarLibro extends React.Component {
     constructor(props){
       super(props)
-        this.state={id:this.props.id, persona_id:''}
+        this.state={id:this.props.id, persona_id:this.props.persona_id,categoria_id:this.props.categoria_id,
+                    descripcion:this.props.descripcion,nombre:this.props.nombre }
         
         this.handleSubmit = this.handleSubmit.bind(this);    
         
@@ -15,6 +16,7 @@ handleSubmit = (e) => {
     e.preventDefault();
     this.props.onPrestar(this.state)
     e.target.reset();
+    console.log(this.props)
     this.setState({id:this.props.id,persona_id: null})
 }
 onChangeInt = (event) => {
@@ -50,7 +52,7 @@ const mapEstadoAProps = (state) => {
 const mapAccionesAProps = (dispatch, props) => {
         return {
       onPrestar:(props)=>{
-        
+        console.log(props)
         const prestar = async () => {
           try {
             const res = await prestarLibro( parseInt(props.id), props);
