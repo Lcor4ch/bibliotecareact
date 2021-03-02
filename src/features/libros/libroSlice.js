@@ -12,7 +12,7 @@ const initialState = [{id:0,nombre:'nada',persona_id:0,categoria_id:0,descripcio
       }
       case 'libros/librosLoaded': {
         // Replace the existing state entirely by returning the new value
-        action.payload.map((act)=>{return act.selected=true})
+        
         action.payload.map((act)=>{return act.borrable=false})
         return action.payload
       }
@@ -27,6 +27,14 @@ const initialState = [{id:0,nombre:'nada',persona_id:0,categoria_id:0,descripcio
       case 'libros/libroDeleted': {
         // Can return just the new todos array - no extra object around it
         return state.filter((libro) => libro.id !== action.payload)
+      }
+      case 'libros/prestarLibro':{
+        
+      return state.map((libro)=>{if(libro.id===action.payload.id){return libro.persona_id=action.payload.persona_id}})
+      }
+      case 'libros/libroDevolver':{
+       return state.map((libro)=>{if(libro.id===action.payload.id){return libro.persona_id=null}}) 
+
       }
       default:
         return state

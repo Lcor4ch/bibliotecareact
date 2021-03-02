@@ -5,6 +5,7 @@ import LibroListItem from "./libroListItem";
 
 class LibroList extends React.Component {
   render() {
+    if(this.props.state){
     const filas = [];
     const personas = this.props.state.personas;
     const libros = this.props.state.libros;
@@ -59,8 +60,8 @@ class LibroList extends React.Component {
   }});
     
     return <ul className="ListaLibro">{filas}</ul>;
-  }
-}
+  }else{return null}
+}}
 
 const mapEstadoAProps = (state) => {
   return {

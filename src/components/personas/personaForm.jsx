@@ -58,7 +58,11 @@ const mapEstadoAProps = (state) => {
           try {
             const res = await addPersona(props);
             if (res.status === 200){
-              const payload = {id:res.data.id,nombre:res.data.nombre.toUpperCase(), apellido:res.data.apellido.toUpperCase(),alias:res.data.alias.toUpperCase(),email:res.data.email,borrable:true}
+              const payload = {id:res.data.id,
+                nombre:res.data.nombre.toUpperCase(),
+                 apellido:res.data.apellido.toUpperCase(),
+                 alias:res.data.alias.toUpperCase(),
+                 email:res.data.email,borrable:true}
               dispatch({ type: "personas/personaAdded", payload: payload });
               }
               }catch (e){

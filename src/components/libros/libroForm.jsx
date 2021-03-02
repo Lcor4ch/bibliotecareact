@@ -23,12 +23,12 @@ clickear=(event)=>{
 
 onChange = (event) => {
   event.preventDefault();
-  console.log(event.target.value,event.target.name)
+  
   this.setState({[event.target.name] :event.target.value});
 }
 onChangeInt = (event) => {
   event.preventDefault();
-  console.log(typeof(event.target.value),typeof parseInt(event.target.value))
+  
   this.setState({[event.target.name] : parseInt(event.target.value)});
 }
 render() {

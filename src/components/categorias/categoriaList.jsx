@@ -4,6 +4,7 @@ import CategoriaListItem from "../categorias/categoriaListItemConConnect";
 import BotonTodos from "./categoriaBotonTodos";
 class CategoriaList extends React.Component {
   render() {
+    if (this.props.state){
     this.props.state.categorias.map((categoria) => {
       return (categoria.borrable =
         this.props.state.libros.filter(
@@ -21,8 +22,8 @@ class CategoriaList extends React.Component {
       );
     });
     return <ul>{filas}</ul>;
-  }
-}
+  }else{return null}
+}}
 
 const mapEstadoAProps = (state) => {
   return {

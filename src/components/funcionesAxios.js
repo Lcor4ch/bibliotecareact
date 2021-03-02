@@ -55,6 +55,7 @@ export async function putPersona(persona){
   return response
 }
 
+
 export async function addCategoria(categoria){
   const response = await axios.post(url+'/categoria/',categoria)
   return response 
@@ -66,8 +67,17 @@ export async function deleteLibro(libro){
 
 }
 export async function putLibro(libro){
-  console.log(libro,888)
+  
   const response = await axios.put(url+'/libro/'+libro.id,libro)
+  return response
+}
+export async function prestarLibro(libroId,persona){
+  
+  const response = await axios.put(url+'/libro/prestar/'+libroId, persona)
+  return response
+}
+export async function devolverLibro(id){
+  const response = await axios.put(url+'/libro/devolver/'+id)
   return response
 }
 export async function deletePersona(persona){

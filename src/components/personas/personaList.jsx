@@ -10,7 +10,7 @@ class PersonaList extends React.Component {
           (libro) => libro.persona_id === persona.id).length === 0);
     });
     
-    const filas = [<BotonBiblioteca/>]
+    const filas = [<BotonBiblioteca key='jorgito'/>]
      
     this.props.state.personas.forEach((persona) => {
       filas.push(

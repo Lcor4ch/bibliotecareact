@@ -1,35 +1,47 @@
 import React from "react";
 import { connect } from "react-redux";
-import { deleteLibro } from "../funcionesAxios";
+import { deleteLibro , prestarLibro, devolverLibro} from "../funcionesAxios";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import DescripcionPopUpFrom from "./descripcionPopUpForm"
-
+import PrestarLibro from "./prestarLibro"
 class LibroListItem extends React.Component {
   constructor(props) {
     super(props);
+    this.state={tenedor:''}
     this.delete = this.delete.bind(this);
     this.prestar = this.prestar.bind(this);
-    this.clickear = this.clickear.bind(this);
+    this.devolver = this.devolver.bind(this);  
   }
   prestar() {
-    this.props.prestar();
+    this.props.onPrestar();
   }
+
   delete() {
     this.props.onDelete();
   }
-  clickear() {
-    console.log(1234, this.props);
-    this.props.onClickear();
+  devolver=(event)=>{
+    event.preventDefault();
+    
+    
+    this.props.onDevolver()
+   
+   
+}
+
+
+
+  devolver(){
+    this.props.onDevolver();
   }
 
   render() {
     const personas = this.props.state.personas
     const persona = personas.find((persona)=>persona.id===this.props.persona_id)
     const cartel ='En biblioteca'
-    const aMostrar = persona?persona.nombre:cartel
-    console.log(aMostrar,15452662,null==null)
-    console.log(this.props.persona_id)
+    const aMostrar = persona?persona.nombre +' '+persona.apellido:cartel
+    
+    
     return (
       <Card style={{ width: "30rem" }}>
           <Card.Body>
@@ -46,7 +58,15 @@ class LibroListItem extends React.Component {
                                   descripcion={this.props.descripcion}
                                   categoria_id={this.props.categoria_id}
                                   borrable={this.props.borrable}
-                                  persona_id={this.props.persona_id}/>
+                                  persona_id={this.props.persona_id}
+                                  />
+                                  <PrestarLibro nombre={this.props.nombre}
+                                                id={ this.props.id}
+                                                descripcion={this.props.descripcion}
+                                                categoria_id={this.props.categoria_id}
+                                                borrable={this.props.borrable}
+                                                persona_id={this.props.persona_id}/>
+                                  <button onClick={this.devolver}>Recuperar</button>
           </Card.Body>
         </Card>
 /*<Button variant="primary">Go somewhere</Button>*/
@@ -89,10 +109,28 @@ const mapAccionesAProps = (dispatch, props) => {
       };
       get_res();
     },
-    onClickear: () => {
-      dispatch({ type: "categorias/hacerBorrables" });
-    },
-  };
-};
+   
+    onDevolver:()=>{
+      console.log(props,100000)
+      const devolver = async () => {
+        try {
+          const res = await devolverLibro(props.id);
+          if (res.status === 200) {
+            
+            const payload = props;
+            payload.borrable=true
+            dispatch({ type: "libros/libroDeleted", payload: props.id });
+            dispatch({type:"libros/libroAdded",payload:payload})
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      };
+      devolver();
+    },  
+  }
+    
+  }
+
 
 export default connect(mapEstadoAProps, mapAccionesAProps)(LibroListItem);
