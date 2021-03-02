@@ -15,7 +15,7 @@ handleSubmit = (e) => {
     e.preventDefault();
     this.props.onPrestar(this.state)
     e.target.reset();
-    this.setState({persona_id: ''})
+    this.setState({id:this.props.id,persona_id: null})
 }
 onChangeInt = (event) => {
   event.preventDefault();
@@ -27,11 +27,11 @@ render(){
         const opciones=[<option key={-12} value={null}></option>];
         this.props.state.map((persona)=>opciones.push(<option key={persona.id} value={persona.id}>{persona.nombre+' '+persona.apellido}</option>))
         return (
-          <form className="formLibro" onSubmit={this.handleSubmit}>
+          <form className="formLibro" onSubmit={this.handleSubmit} disabled={this.props.persona_id!=null}>
           <div className="formLibro2"><select name='persona_id' onChange={this.onChangeInt} >{opciones}</select>
            </div>
             <input
-            type='submit' value='Prestar'
+            type='submit' value='Prestar' disabled={this.props.persona_id!=null}
             />  
             </form>
         );

@@ -8,7 +8,7 @@ import PrestarLibro from "./prestarLibro"
 class LibroListItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state={tenedor:''}
+    this.state={tenedor:this.props.persona_id}
     this.delete = this.delete.bind(this);
     this.prestar = this.prestar.bind(this);
     this.devolver = this.devolver.bind(this);  
@@ -22,18 +22,16 @@ class LibroListItem extends React.Component {
   }
   devolver=(event)=>{
     event.preventDefault();
+    this.setState({
+      [event.target.id]: null
+  })
     
-    
-    this.props.onDevolver()
-   
-   
+    this.props.onDevolver()   
 }
 
 
 
-  devolver(){
-    this.props.onDevolver();
-  }
+
 
   render() {
     const personas = this.props.state.personas
@@ -66,7 +64,7 @@ class LibroListItem extends React.Component {
                                                 categoria_id={this.props.categoria_id}
                                                 borrable={this.props.borrable}
                                                 persona_id={this.props.persona_id}/>
-                                  <button onClick={this.devolver}>Recuperar</button>
+                                  <button id="tenedor" onClick={this.devolver} disabled={this.props.persona_id==null}>Recuperar</button>
           </Card.Body>
         </Card>
 /*<Button variant="primary">Go somewhere</Button>*/
@@ -111,19 +109,21 @@ const mapAccionesAProps = (dispatch, props) => {
     },
    
     onDevolver:()=>{
-      console.log(props,100000)
+      
       const devolver = async () => {
         try {
           const res = await devolverLibro(props.id);
           if (res.status === 200) {
             
             const payload = props;
-            payload.borrable=true
+            payload.borrable=true;
+            payload.persona_id=null;
             dispatch({ type: "libros/libroDeleted", payload: props.id });
             dispatch({type:"libros/libroAdded",payload:payload})
           }
         } catch (e) {
           console.error(e);
+          console.log(e)
         }
       };
       devolver();
