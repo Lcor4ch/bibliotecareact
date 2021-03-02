@@ -1,45 +1,50 @@
 import React from "react";
 import { connect } from "react-redux";
-import { deletePersona} from "../funcionesAxios";
-import PersonaPutPopUp from "./personaPutPopUp"
-import PopUpForm from "./personaPutPopUp"
+import { deletePersona } from "../funcionesAxios";
+import PersonaPutPopUp from "./personaPutPopUp";
+import PopUpForm from "./personaPutPopUp";
 class personaListItem extends React.Component {
   constructor(props) {
     super(props);
     this.traerLibros = this.traerLibros.bind(this);
     this.delete = this.delete.bind(this);
-    this.modificarPersona= this.modificarPersona.bind(this);
+    this.modificarPersona = this.modificarPersona.bind(this);
   }
   traerLibros() {
-    console.log(this.props);
     this.props.onTraerLibros();
   }
   delete() {
     this.props.onDelete();
   }
-  modificarPersona(){
+  modificarPersona() {
     this.props.onModificar();
   }
 
   render() {
-    if (this.props.nombre){
-    return (
-      <li className="itemListCategoria" id={this.props.id}>
-        <button
-          className="botonCategoriaItem2"
-          onClick={this.delete}
-          disabled={!this.props.borrable}
-        >
-          X
-        </button>
-        <button className="botonCategoriaItem" onClick={this.traerLibros}>
-          {this.props.nombre+' '+
-          this.props.apellido+' ('+
-          this.props.alias+')'}
-        </button>
-        <PopUpForm email={this.props.email} id={this.props.id}/>
-      </li>
-    );}else{return null}
+    if (this.props.nombre) {
+      return (
+        <li className="itemListCategoria" id={this.props.id}>
+          <button
+            className="botonCategoriaItem2"
+            onClick={this.delete}
+            disabled={!this.props.borrable}
+          >
+            X
+          </button>
+          <button className="botonCategoriaItem" onClick={this.traerLibros}>
+            {this.props.nombre +
+              " " +
+              this.props.apellido +
+              " (" +
+              this.props.alias +
+              ")"}
+          </button>
+          <PopUpForm email={this.props.email} id={this.props.id} />
+        </li>
+      );
+    } else {
+      return null;
+    }
   }
 }
 
@@ -61,7 +66,6 @@ const mapAccionesAProps = (dispatch, props) => {
       const get_res = async () => {
         try {
           const res = await deletePersona({ id: props.id });
-          console.log(res);
           if (res.status === 200) {
             dispatch({
               type: "personas/personaDeleted",
@@ -69,16 +73,15 @@ const mapAccionesAProps = (dispatch, props) => {
             });
           }
         } catch (e) {
-          console.error(e);
+          alert(e.response.data.Error);
         }
       };
       get_res();
     },
-    onModificar: ()=>{
+    onModificar: () => {
       const get_res = async () => {
         try {
           const res = await deletePersona({ id: props.id });
-          console.log(res);
           if (res.status === 200) {
             dispatch({
               type: "personas/personaDeleted",
@@ -86,13 +89,11 @@ const mapAccionesAProps = (dispatch, props) => {
             });
           }
         } catch (e) {
-          console.error(e);
+          alert(e.response.data.Error);
         }
       };
       get_res();
-     
-    }
-  
+    },
+  };
 };
-}
 export default connect(mapEstadoAProps, mapAccionesAProps)(personaListItem);

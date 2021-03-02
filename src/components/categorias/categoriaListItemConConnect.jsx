@@ -9,7 +9,6 @@ class categoriaListItem extends React.Component {
     this.delete = this.delete.bind(this);
   }
   traerLibros() {
-    console.log(this.props);
     this.props.onTraerLibros();
   }
   delete() {
@@ -52,7 +51,6 @@ const mapAccionesAProps = (dispatch, props) => {
       const get_res = async () => {
         try {
           const res = await deleteCategoria({ id: props.id });
-          console.log(res);
           if (res.status === 200) {
             dispatch({
               type: "categorias/categoriaDeleted",
@@ -60,7 +58,7 @@ const mapAccionesAProps = (dispatch, props) => {
             });
           }
         } catch (e) {
-          console.error(e);
+          alert(e.response.data.Error);
         }
       };
       get_res();

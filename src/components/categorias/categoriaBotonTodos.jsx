@@ -7,7 +7,6 @@ class botonTodos extends React.Component {
     this.traerTodos = this.traerTodos.bind(this);
   }
   traerTodos() {
-    console.log(this.props);
     this.props.onTraerTodos();
   }
 
@@ -31,7 +30,6 @@ const mapEstadoAProps = (state) => {
 const mapAccionesAProps = (dispatch, props) => {
   return {
     onTraerTodos: () => {
-      
       dispatch({ type: "lista/setIdReq", payload: -1 });
       dispatch({ type: "lista/mostrarDeCategorias" });
     },

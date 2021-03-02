@@ -7,22 +7,23 @@ class PersonaList extends React.Component {
     this.props.state.personas.map((persona) => {
       return (persona.borrable =
         this.props.state.libros.filter(
-          (libro) => libro.persona_id === persona.id).length === 0);
+          (libro) => libro.persona_id === persona.id
+        ).length === 0);
     });
-    
-    const filas = [<BotonBiblioteca key='jorgito'/>]
-     
+
+    const filas = [<BotonBiblioteca key="jorgito" />];
+
     this.props.state.personas.forEach((persona) => {
       filas.push(
         <PersonaListItem
-          nombre = {persona.nombre}
-          apellido = {persona.apellido}
-          alias = {persona.alias}
+          nombre={persona.nombre}
+          apellido={persona.apellido}
+          alias={persona.alias}
           borrable={persona.borrable}
           id={persona.id}
           key={persona.id}
-          email={persona.email}/>
-          
+          email={persona.email}
+        />
       );
     });
     return <ul>{filas}</ul>;

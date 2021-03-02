@@ -7,7 +7,6 @@ class botonBiblioteca extends React.Component {
     this.traerBiblioteca = this.traerBiblioteca.bind(this);
   }
   traerBiblioteca() {
-    console.log(this.props);
     this.props.onTraerBiblioteca();
   }
 
@@ -31,8 +30,7 @@ const mapEstadoAProps = (state) => {
 const mapAccionesAProps = (dispatch) => {
   return {
     onTraerBiblioteca: () => {
-     
-      dispatch({ type: "lista/soloEnBiblioteca"});
+      dispatch({ type: "lista/soloEnBiblioteca" });
       dispatch({ type: "lista/mostrarDePersonas" });
     },
   };

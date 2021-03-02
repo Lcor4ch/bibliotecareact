@@ -1,17 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
-import { deleteLibro , prestarLibro, devolverLibro} from "../funcionesAxios";
+import { deleteLibro, prestarLibro, devolverLibro } from "../funcionesAxios";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import DescripcionPopUpFrom from "./descripcionPopUpForm"
-import PrestarLibro from "./prestarLibro"
+import DescripcionPopUpFrom from "./descripcionPopUpForm";
+import PrestarLibro from "./prestarLibro";
 class LibroListItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state={tenedor:this.props.persona_id}
+    this.state = { tenedor: this.props.persona_id };
     this.delete = this.delete.bind(this);
     this.prestar = this.prestar.bind(this);
-    this.devolver = this.devolver.bind(this);  
+    this.devolver = this.devolver.bind(this);
   }
   prestar() {
     this.props.onPrestar();
@@ -20,55 +20,56 @@ class LibroListItem extends React.Component {
   delete() {
     this.props.onDelete();
   }
-  devolver=(event)=>{
+  devolver = (event) => {
     event.preventDefault();
     this.setState({
-      [event.target.id]: null
-  })
-    
-    this.props.onDevolver()   
-}
+      [event.target.id]: null,
+    });
 
-
-
-
+    this.props.onDevolver();
+  };
 
   render() {
-    const personas = this.props.state.personas
-    const persona = personas.find((persona)=>persona.id===this.props.persona_id)
-    const cartel ='En biblioteca'
-    const aMostrar = persona?persona.nombre +' '+persona.apellido:cartel
-    
-    
+    const personas = this.props.state.personas;
+    const persona = personas.find(
+      (persona) => persona.id === this.props.persona_id
+    );
+    const cartel = "En biblioteca";
+    const aMostrar = persona ? persona.nombre + " " + persona.apellido : cartel;
+
     return (
       <Card style={{ width: "30rem" }}>
-          <Card.Body>
-            <Card.Title>{this.props.nombre}</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">
-              
-              {aMostrar}
-            </Card.Subtitle>
-            <Card.Text>
-              {this.props.descripcion}
-            </Card.Text>
-            <DescripcionPopUpFrom nombre={this.props.nombre}
-                                  id={ this.props.id}
-                                  descripcion={this.props.descripcion}
-                                  categoria_id={this.props.categoria_id}
-                                  borrable={this.props.borrable}
-                                  persona_id={this.props.persona_id}
-                                  />
-                                  <PrestarLibro nombre={this.props.nombre}
-                                                id={ this.props.id}
-                                                descripcion={this.props.descripcion}
-                                                categoria_id={this.props.categoria_id}
-                                                borrable={this.props.borrable}
-                                                persona_id={this.props.persona_id}/>
-                                  <button id="tenedor" onClick={this.devolver} disabled={this.props.persona_id==null}>Recuperar</button>
-          </Card.Body>
-        </Card>
-/*<Button variant="primary">Go somewhere</Button>*/
-/*<li className="itemListLibro">
+        <Card.Body>
+          <Card.Title>{this.props.nombre}</Card.Title>
+          <Card.Subtitle className="mb-2 text-muted">{aMostrar}</Card.Subtitle>
+          <Card.Text>{this.props.descripcion}</Card.Text>
+          <DescripcionPopUpFrom
+            nombre={this.props.nombre}
+            id={this.props.id}
+            descripcion={this.props.descripcion}
+            categoria_id={this.props.categoria_id}
+            borrable={this.props.borrable}
+            persona_id={this.props.persona_id}
+          />
+          <PrestarLibro
+            nombre={this.props.nombre}
+            id={this.props.id}
+            descripcion={this.props.descripcion}
+            categoria_id={this.props.categoria_id}
+            borrable={this.props.borrable}
+            persona_id={this.props.persona_id}
+          />
+          <button
+            id="tenedor"
+            onClick={this.devolver}
+            disabled={this.props.persona_id == null}
+          >
+            Recuperar
+          </button>
+        </Card.Body>
+      </Card>
+      /*<Button variant="primary">Go somewhere</Button>*/
+      /*<li className="itemListLibro">
         {this.props.nombre}
       <div>
           <button
@@ -102,35 +103,30 @@ const mapAccionesAProps = (dispatch, props) => {
             dispatch({ type: "libros/libroDeleted", payload: props.id });
           }
         } catch (e) {
-          console.error(e);
+          alert(e.response.data.Error);
         }
       };
       get_res();
     },
-   
-    onDevolver:()=>{
-      
+
+    onDevolver: () => {
       const devolver = async () => {
         try {
           const res = await devolverLibro(props.id);
           if (res.status === 200) {
-            
             const payload = props;
-            payload.borrable=true;
-            payload.persona_id=null;
+            payload.borrable = true;
+            payload.persona_id = null;
             dispatch({ type: "libros/libroDeleted", payload: props.id });
-            dispatch({type:"libros/libroAdded",payload:payload})
+            dispatch({ type: "libros/libroAdded", payload: payload });
           }
         } catch (e) {
-          console.error(e);
-          console.log(e)
+          alert(e.response.data.Error);
         }
       };
       devolver();
-    },  
-  }
-    
-  }
-
+    },
+  };
+};
 
 export default connect(mapEstadoAProps, mapAccionesAProps)(LibroListItem);

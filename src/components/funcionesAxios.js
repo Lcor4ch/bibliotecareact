@@ -1,89 +1,77 @@
-import axios from "axios"
+import axios from "axios";
 
-
-const url = 'http://localhost:3000';
-
+const url = "http://localhost:3000";
 
 export async function fetchLibros2(dispatch) {
-    const response = await axios.get(url+'/libro')
-    const libros =response.data.respuesta; 
-    dispatch({ type: 'libros/librosLoaded', payload: libros })
-  }  
-  export async function fetchLibros(dispatch) {
-    const response = await axios.get(url+'/libro')
-    const libros =response.data.respuesta; 
-    return libros
-  }
+  const response = await axios.get(url + "/libro");
+  const libros = response.data.respuesta;
+  dispatch({ type: "libros/librosLoaded", payload: libros });
+}
+export async function fetchLibros(dispatch) {
+  const response = await axios.get(url + "/libro");
+  const libros = response.data.respuesta;
+  return libros;
+}
 export async function fetchCategorias2(dispatch) {
-    const response = await axios.get(url+'/categoria')
-    const categorias =response.data.respuesta; 
-    dispatch({ type: 'categorias/categoriasLoaded', payload: categorias })
-  }
+  const response = await axios.get(url + "/categoria");
+  const categorias = response.data.respuesta;
+  dispatch({ type: "categorias/categoriasLoaded", payload: categorias });
+}
 
-  export async function fetchCategorias() {
-    const response = await axios.get(url+'/categoria').then((res)=>{return res.data.respuesta})
-    return response
-  }
+export async function fetchCategorias() {
+  const response = await axios.get(url + "/categoria").then((res) => {
+    return res.data.respuesta;
+  });
+  return response;
+}
 export async function fetchPersonas2(dispatch) {
-    const response = await axios.get(url+'/persona')
-    const personas =response.data.respuesta; 
-    dispatch({ type: 'personas/personasLoaded', payload: personas })
-  }  
-  export async function fetchPersonas() {
-    const response = await axios.get(url+'/persona')
-    const personas =response.data.respuesta; 
-    return personas    
-  }  
-export async function deleteCategoria(categoria){
-  const response = await axios.delete(url+'/categoria/'+categoria.id)
-    return response
-        /*dispatch({ type: 'categorias/categoriaDeleted', payload: info })*/
-
+  const response = await axios.get(url + "/persona");
+  const personas = response.data.respuesta;
+  dispatch({ type: "personas/personasLoaded", payload: personas });
 }
-export async function addLibro(libro){
-  console.log(154,libro)
-  const response = await axios.post(url+'/libro/',libro)
-  return response 
+export async function fetchPersonas() {
+  const response = await axios.get(url + "/persona");
+  const personas = response.data.respuesta;
+  return personas;
 }
-export async function addPersona(persona){
-  
-  const response = await axios.post(url+'/persona/',persona)
-  return response 
+export async function deleteCategoria(categoria) {
+  const response = await axios.delete(url + "/categoria/" + categoria.id);
+  return response;
 }
-export async function putPersona(persona){
-  const response = await axios.put(url+'/persona/'+persona.id,persona)
-  return response
+export async function addLibro(libro) {
+  const response = await axios.post(url + "/libro/", libro);
+  return response;
+}
+export async function addPersona(persona) {
+  const response = await axios.post(url + "/persona/", persona);
+  return response;
+}
+export async function putPersona(persona) {
+  const response = await axios.put(url + "/persona/" + persona.id, persona);
+  return response;
 }
 
-
-export async function addCategoria(categoria){
-  const response = await axios.post(url+'/categoria/',categoria)
-  return response 
+export async function addCategoria(categoria) {
+  const response = await axios.post(url + "/categoria/", categoria);
+  return response;
 }
-export async function deleteLibro(libro){
-  const response = await axios.delete(url+'/libro/'+libro.id)
-    return response
-        /*dispatch({ type: 'categorias/categoriaDeleted', payload: info })*/
-
+export async function deleteLibro(libro) {
+  const response = await axios.delete(url + "/libro/" + libro.id);
+  return response;
 }
-export async function putLibro(libro){
-  
-  const response = await axios.put(url+'/libro/'+libro.id,libro)
-  return response
+export async function putLibro(libro) {
+  const response = await axios.put(url + "/libro/" + libro.id, libro);
+  return response;
 }
-export async function prestarLibro(libroId,persona){
-  
-  const response = await axios.put(url+'/libro/prestar/'+libroId, persona)
-  return response
+export async function prestarLibro(libroId, persona) {
+  const response = await axios.put(url + "/libro/prestar/" + libroId, persona);
+  return response;
 }
-export async function devolverLibro(id){
-  const response = await axios.put(url+'/libro/devolver/'+id)
-  return response
+export async function devolverLibro(id) {
+  const response = await axios.put(url + "/libro/devolver/" + id);
+  return response;
 }
-export async function deletePersona(persona){
-  const response = await axios.delete(url+'/persona/'+persona.id)
-    return response
-        /*dispatch({ type: 'categorias/categoriaDeleted', payload: info })*/
-
+export async function deletePersona(persona) {
+  const response = await axios.delete(url + "/persona/" + persona.id);
+  return response;
 }
-
