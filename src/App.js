@@ -26,7 +26,7 @@ function App() {
       </nav>
       <main>
         <section className="medium-container">
-          <h2>Todos</h2>
+          
           <div className="bibliotecaApp">
             <div className="categoriaColumna">
               <CategoriaForm />

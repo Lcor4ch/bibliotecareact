@@ -50,7 +50,7 @@ const mapAccionesAProps = (dispatch, props) => {
             dispatch({ type: "categorias/categoriaAdded", payload: res.data });
           }
         } catch (e) {
-          alert(e.response.data.Error);
+          console.log(props.nombre);
         }
       };
       get_res();

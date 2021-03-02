@@ -4,7 +4,13 @@ import { connect } from "react-redux";
 class PrestarLibro extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { id: this.props.id, persona_id: "" };
+    this.state = {
+      id: this.props.id,
+      persona_id: this.props.persona_id,
+      categoria_id: this.props.categoria_id,
+      descripcion: this.props.descripcion,
+      nombre: this.props.nombre,
+    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -13,10 +19,12 @@ class PrestarLibro extends React.Component {
     e.preventDefault();
     this.props.onPrestar(this.state);
     e.target.reset();
+    console.log(this.props);
     this.setState({ id: this.props.id, persona_id: null });
   };
   onChangeInt = (event) => {
     event.preventDefault();
+    console.log(event.target.name, event.target.value);
     this.setState({ [event.target.name]: parseInt(event.target.value) });
   };
   render() {
@@ -62,6 +70,7 @@ const mapEstadoAProps = (state) => {
 const mapAccionesAProps = (dispatch, props) => {
   return {
     onPrestar: (props) => {
+      console.log(props);
       const prestar = async () => {
         try {
           const res = await prestarLibro(parseInt(props.id), props);

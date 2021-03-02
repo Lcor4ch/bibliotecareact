@@ -68,21 +68,6 @@ class LibroListItem extends React.Component {
           </button>
         </Card.Body>
       </Card>
-      /*<Button variant="primary">Go somewhere</Button>*/
-      /*<li className="itemListLibro">
-        {this.props.nombre}
-      <div>
-          <button
-          className="botonCategoriaItem2"
-          onClick={this.clickear}
-          id={this.props.id}> 0 </button>
-        <button
-          className="botonCategoriaItem2"
-          onClick={this.delete}
-          disabled={!this.props.borrable}
-          id={this.props.id}> X </button>
-          </div>
-      </li>*/
     );
   }
 }
@@ -117,6 +102,7 @@ const mapAccionesAProps = (dispatch, props) => {
             const payload = props;
             payload.borrable = true;
             payload.persona_id = null;
+            console.log(15154, payload);
             dispatch({ type: "libros/libroDeleted", payload: props.id });
             dispatch({ type: "libros/libroAdded", payload: payload });
           }
